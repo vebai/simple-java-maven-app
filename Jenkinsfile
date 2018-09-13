@@ -2,8 +2,10 @@
 
 pipeline {
     //agent any
-    agent { label 'mylocal' }
-    environment {
+    agent { label 'linux' }
+    
+}
+   /* environment {
       DRAFT_BRANCH_NAME=      "${env.DRAFT_BRANCH_NAME}".toLowerCase()
       slackMessage =          "${env.JOB_NAME}, build ${env.BUILD_NUMBER}\n${env.BUILD_URL}\nBranch: ${DRAFT_BRANCH_NAME}-${env.DRAFT_BUILD_NUMBER}"
       AWS_PROFILE =           "newlook-nonprod-ddt1"
@@ -118,13 +120,13 @@ pipeline {
             parallel {
                 stage('Storefront Test'){
                     steps {
-                        /*timeout(30){
+                        timeout(30){
                           sh "${WORKSPACE}/config/jenkins/bin/verify_storefront.sh ${env.TARGET}.dev-newlook.com"
                           echo "Storefront is up and running"
                           echo "Going to sleep for 10 mins for debug purpose"
                           sleep 600
                           echo "after sleep(secs)"
-                        }*/
+                        }
                         echo "TBD"
                     }
                 }
@@ -201,3 +203,4 @@ pipeline {
         aborted { slackSend color: '#D3D3D3', message: "IT'S NOT ME, IT'S YOU: Aborted Job ${env.slackMessage}"}
     }
 }
+*/
