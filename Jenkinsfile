@@ -2,7 +2,7 @@
 
 pipeline {
     //agent any
-    agent { label 'mylocal' }
+    agent { label 'linux' }
     environment {
       DRAFT_BRANCH_NAME=      "${env.DRAFT_BRANCH_NAME}".toLowerCase()
       slackMessage =          "${env.JOB_NAME}, build ${env.BUILD_NUMBER}\n${env.BUILD_URL}\nBranch: ${DRAFT_BRANCH_NAME}-${env.DRAFT_BUILD_NUMBER}"
