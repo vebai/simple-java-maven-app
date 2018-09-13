@@ -48,7 +48,7 @@ pipeline {
                 }
             }
         }
-    }
+    
     /*
         stage('Run multi-productionconfig and Environment Create') {
             parallel {
@@ -205,3 +205,4 @@ pipeline {
     }
 }
 */
+ }
