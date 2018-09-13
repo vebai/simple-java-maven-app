@@ -4,8 +4,8 @@ pipeline {
     //agent any
     agent { label 'linux' }
     
-}
-   /* environment {
+
+    environment {
       DRAFT_BRANCH_NAME=      "${env.DRAFT_BRANCH_NAME}".toLowerCase()
       slackMessage =          "${env.JOB_NAME}, build ${env.BUILD_NUMBER}\n${env.BUILD_URL}\nBranch: ${DRAFT_BRANCH_NAME}-${env.DRAFT_BUILD_NUMBER}"
       AWS_PROFILE =           "newlook-nonprod-ddt1"
@@ -48,7 +48,8 @@ pipeline {
                 }
             }
         }
-
+    }
+    /*
         stage('Run multi-productionconfig and Environment Create') {
             parallel {
                 stage('Run multi-productionconfig') {
