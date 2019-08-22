@@ -1,0 +1,74 @@
+# importing the requests library to issue REST requests.
+
+import requests
+import sys
+import time
+import json
+
+print ("*****  Hello and welcome to the git gists query tool developed by Victor  ***********")
+print("\n")
+user_id = raw_input("Please enter the git user login ID and press return: ")
+
+# githup api endpoint to query for gists
+
+URL = "https://api.github.com/users/"+user_id+"/gists"
+
+# sending a GET request to githup api saving the response as response object
+
+r = requests.get(URL)
+if r.status_code == 200:
+    print("Success! the gists where found for " +user_id)
+    print("Following are the gists")
+    print("\n")
+elif r.status_code != 200:
+    print("Faliure: no gists were found for "+user_id+". Please check the userid and try again !!!")
+    print("\n")
+    print("********This program will now terminate try again later*******")
+    sys.exit()
+# converting the object to json format
+
+gists =  r.json()
+print(json.dumps(gists, indent=4, sort_keys=True))
+
+print("\n")
+print("The program will now check for new gists every 60 seconds.")
+print("To terminate the program Press Contrl z (mac) or Contrl x (Windows)")
+print("\n")
+
+# Infinite while loop to get updates
+
+def gistsF():
+ while  True:
+    r = requests.get(URL)
+    gists =  r.json()
+    n = 0 
+    
+    
+    for r in gists:
+      l = gists[n]['id']
+      mylist2 = list()
+      mylist2.append(l) 
+      n =  n + 1
+      time.sleep(60)
+       
+    b = 0
+    r1 = requests.get(URL)
+    gists =  r1.json()
+    g = "cky"
+    
+    for r1 in gists:
+      l1 = gists[b]['id']
+      mylist1 = list()
+      mylist1.append(l1) 
+      b =  b + 1
+      g = gists[0]["id"]
+      
+    if b > n:
+     print ("A new gist has been published by " +user_id )
+     print("\n")
+     print ("The new gist id is "+g )
+    continue
+
+      
+gistsF() 
+  
